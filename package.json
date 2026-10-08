@@ -1,0 +1,52 @@
+{
+  "name": "chat-models",
+  "displayName": "Ace Data Cloud Chat Models",
+  "description": "Use Ace Data Cloud chat models in the VS Code Chat model picker with your own API key.",
+  "version": "0.1.0",
+  "publisher": "acedatacloud",
+  "icon": "icon.png",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.138.0"
+  },
+  "categories": ["AI", "Chat"],
+  "keywords": ["ace data cloud", "chat models", "byok", "language model provider"],
+  "main": "./out/extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AceDataCloud/VSCodeModelProvider"
+  },
+  "homepage": "https://platform.acedata.cloud",
+  "bugs": {
+    "url": "https://github.com/AceDataCloud/VSCodeModelProvider/issues"
+  },
+  "activationEvents": ["onStartupFinished", "onLanguageModelChatProvider:acedatacloud"],
+  "contributes": {
+    "languageModelChatProviders": [
+      {
+        "vendor": "acedatacloud",
+        "displayName": "Ace Data Cloud",
+        "managementCommand": "acedatacloud.models.manage"
+      }
+    ],
+    "commands": [
+      {
+        "command": "acedatacloud.models.manage",
+        "title": "Manage Chat Models",
+        "category": "Ace Data Cloud"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "check": "npm run compile && npm test",
+    "test": "node --test test/*.test.js",
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/vscode": "^1.138.0",
+    "@vscode/vsce": "^4.0.0",
+    "typescript": "^5.9.3"
+  }
+}
