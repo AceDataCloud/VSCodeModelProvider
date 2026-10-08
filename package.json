@@ -2,7 +2,7 @@
   "name": "chat-models",
   "displayName": "Ace Data Cloud Chat Models",
   "description": "Use Ace Data Cloud chat models in the VS Code Chat model picker with your own API key.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "acedatacloud",
   "icon": "icon.png",
   "license": "MIT",
