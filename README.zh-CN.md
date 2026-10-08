@@ -8,13 +8,15 @@
 
 打开 [VS Code Marketplace 中的 Ace Data Cloud Chat Models](https://marketplace.visualstudio.com/items?itemName=acedatacloud.chat-models)，确认发布者为 **acedatacloud**，点击 **Install**。打开 VS Code 的 **Chat**。如果工作区处于受限模式，先将其设为可信。
 
+![VS Code 官方 Marketplace 中的安装按钮](assets/tutorial/00-marketplace.png)
+
 Copilot Business 和 Enterprise 管理员可以关闭自带模型 Key（BYOK）策略。如果安装后 **Manage Models** 里没有 **Ace Data Cloud**，请向管理员核对该策略。用 BYOK 模型聊天不需要 Copilot 订阅；语义搜索、行内建议等功能另有要求。
 
 ## 2. 获取应用 API Key
 
 1. 登录 [Ace Data Cloud 应用管理](https://platform.acedata.cloud/console/applications)。
 2. 打开 **General application**，使用现有 API Key，或选择 **Manage Keys → Create** 为 VS Code 单独创建 Key。先确认 **OpenAI chat** 服务权限、当前模型价格和余额。
-3. 如果设置了 **Allowed APIs**，请允许扩展使用的模型列表和聊天接口：`GET /v1/models`、`POST /v1/chat/completions`。只复制 Token 本身，不要加 `Bearer ` 或引号。
+3. 如果设置了 **Allowed APIs**，请允许扩展使用的模型列表和聊天接口：`GET /openai/models`、`POST /openai/chat/completions`。只复制 Token 本身，不要加 `Bearer ` 或引号。
 
 ![Ace Data Cloud 应用 Key 操作入口](https://raw.githubusercontent.com/AceDataCloud/GPTImageDify/87dd8342fe7cfbe7a1614652147c535dddc7bd68/_assets/tutorial/get-api-key-en.png)
 
@@ -43,7 +45,7 @@ Copilot Business 和 Enterprise 管理员可以关闭自带模型 Key（BYOK）�
 把下面的内容粘贴到 Chat，只发送一次：
 
 ```text
-Reply with exactly: VS Code connected.
+Reply with exactly: Marketplace extension connected.
 ```
 
 也可以将[无密钥提示词文件](examples/first-chat.prompt.md)复制到工作区的 `.github/prompts/` 目录，再从 Chat 运行。收到回复说明 VS Code 调用了选中模型；到[用量页面](https://platform.acedata.cloud/console/usage)核对对应 Credits。实际费用取决于账号套餐换算率和所选模型的当前价格。
@@ -80,4 +82,4 @@ npm run check
 npm run package
 ```
 
-扩展使用稳定版 VS Code API，通过 `GET /v1/models` 只读核对 Key 与模型，并使用 `POST /v1/chat/completions` 进行流式请求。报错时不把上游响应正文复制进编辑器，也不会自动重试。
+扩展使用稳定版 VS Code API，通过 `GET /openai/models` 只读核对 Key 与模型，并使用 `POST /openai/chat/completions` 进行流式请求。这两个规范路径便于准确选择权限与核对账单。报错时不把上游响应正文复制进编辑器，也不会自动重试。

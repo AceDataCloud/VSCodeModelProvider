@@ -8,13 +8,15 @@ Add an Ace Data Cloud model to the **Chat model picker** in VS Code. This guide 
 
 Open [Ace Data Cloud Chat Models in VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=acedatacloud.chat-models), confirm the publisher is **acedatacloud**, and choose **Install**. Open VS Code's **Chat** view. If your workspace is in Restricted Mode, trust it before selecting a model.
 
+![Official VS Code Marketplace card with Install button](assets/tutorial/00-marketplace.png)
+
 Copilot Business and Enterprise administrators can disable Bring Your Own Language Model Key. If **Ace Data Cloud** is absent from **Manage Models** after installation, check that policy with your administrator. Chat with BYOK models does not require a Copilot plan; some editor features, such as semantic search and inline suggestions, have separate requirements.
 
 ## 2. Get an Ace Data Cloud application API key
 
 1. Sign in to [Applications](https://platform.acedata.cloud/console/applications).
 2. Open **General application** and use its API key, or choose **Manage Keys → Create** for a separate VS Code key. Check **OpenAI chat** access, current model pricing, and your balance first.
-3. If you restrict **Allowed APIs**, allow the model-list and chat-completions APIs used by this extension: `GET /v1/models` and `POST /v1/chat/completions`. Copy the token string without `Bearer ` or quotes.
+3. If you restrict **Allowed APIs**, allow the model-list and chat-completions APIs used by this extension: `GET /openai/models` and `POST /openai/chat/completions`. Copy the token string without `Bearer ` or quotes.
 
 ![Ace Data Cloud application key controls](https://raw.githubusercontent.com/AceDataCloud/GPTImageDify/87dd8342fe7cfbe7a1614652147c535dddc7bd68/_assets/tutorial/get-api-key-en.png)
 
@@ -43,7 +45,7 @@ If VS Code 1.141 asks you to sign in to GitHub despite the Ace model being selec
 Paste this prompt into Chat and send it once:
 
 ```text
-Reply with exactly: VS Code connected.
+Reply with exactly: Marketplace extension connected.
 ```
 
 You can also copy the [no-key prompt file](examples/first-chat.prompt.md) into your workspace's `.github/prompts/` folder and run it from Chat. The prompt file contains no credentials. A reply in Chat confirms that VS Code called the selected model; check [Usage](https://platform.acedata.cloud/console/usage) for the corresponding Credits charge. Billing follows your account's current package rate and selected model price.
@@ -80,4 +82,4 @@ npm run check
 npm run package
 ```
 
-The extension targets VS Code's stable API and uses `GET /v1/models` for a read-only key/model check and `POST /v1/chat/completions` for streamed Chat requests. API failures are shown without copying upstream response bodies into the editor. Automatic retries are disabled.
+The extension targets VS Code's stable API and uses `GET /openai/models` for a read-only key/model check and `POST /openai/chat/completions` for streamed Chat requests. These canonical API paths make permission selection and billing records unambiguous. API failures are shown without copying upstream response bodies into the editor. Automatic retries are disabled.

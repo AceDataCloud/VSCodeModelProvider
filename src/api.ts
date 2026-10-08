@@ -1,4 +1,4 @@
-export const API_BASE = 'https://api.acedata.cloud/v1';
+export const API_BASE = 'https://api.acedata.cloud/openai';
 
 export type ChatMessage =
   | { role: 'system'; content: string }

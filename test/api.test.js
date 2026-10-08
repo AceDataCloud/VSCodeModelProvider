@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { sseData, streamChat } = require('../out/api');
+const { listModelIds, sseData, streamChat } = require('../out/api');
 
 function body(chunks) {
   const encoder = new TextEncoder();
@@ -20,6 +20,16 @@ test('SSE parser handles chunk boundaries, CRLF, comments, and final event', asy
   assert.deepEqual(events, ['one', 'two']);
 });
 
+test('key validation reads the canonical OpenAI model catalog', async () => {
+  const original = global.fetch;
+  global.fetch = async url => {
+    assert.equal(url, 'https://api.acedata.cloud/openai/models');
+    return new Response(JSON.stringify({ data: [{ id: 'gpt-4.1-mini' }] }), { status: 200 });
+  };
+  try { assert.deepEqual([...await listModelIds('unused-test-key')], ['gpt-4.1-mini']); }
+  finally { global.fetch = original; }
+});
+
 test('streamed tool arguments are joined by index and emitted once', async () => {
   const original = global.fetch;
   const frames = [
@@ -27,7 +37,10 @@ test('streamed tool arguments are joined by index and emitted once', async () =>
     { choices: [{ delta: { tool_calls: [{ index: 0, id: 'call_1', function: { name: 'lookup', arguments: '{"q":' } }] } }] },
     { choices: [{ delta: { tool_calls: [{ index: 0, function: { arguments: '"demo"}' } }] }, finish_reason: 'tool_calls' }] }
   ];
-  global.fetch = async () => new Response(body([...frames.map(frame => `data: ${JSON.stringify(frame)}\n\n`), 'data: [DONE]\n\n']), { status: 200 });
+  global.fetch = async url => {
+    assert.equal(url, 'https://api.acedata.cloud/openai/chat/completions');
+    return new Response(body([...frames.map(frame => `data: ${JSON.stringify(frame)}\n\n`), 'data: [DONE]\n\n']), { status: 200 });
+  };
   const text = [];
   const tools = [];
   try {
