@@ -2,7 +2,7 @@
 
 Add an Ace Data Cloud model to the **Chat model picker** in VS Code. This guide starts with a new API key and ends with one real reply. The extension requires VS Code 1.138 or newer. Screenshots show a real English VS Code 1.141 session; the key field is empty.
 
-[简体中文教程](README.zh-CN.md) · [Models and current pricing](https://platform.acedata.cloud/models) · [Source](https://github.com/AceDataCloud/VSCodeModelProvider)
+[简体中文教程](README.zh-CN.md) · [Models and current pricing](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=vscodemodelprovider_readme_pricing) · [Source](https://github.com/AceDataCloud/VSCodeModelProvider)
 
 ## 1. Install and check access
 
@@ -14,7 +14,9 @@ Copilot Business and Enterprise administrators can disable Bring Your Own Langua
 
 ## 2. Get an Ace Data Cloud application API key
 
-1. Sign in to [Applications](https://platform.acedata.cloud/console/applications).
+New account? Register and sign in first. If the Applications page has no General application yet, choose **Initialize General Application**, then continue with the key steps below.
+
+1. Sign in to [Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=vscodemodelprovider_readme_api_key).
 2. Open **General application** and use its API key, or choose **Manage Keys → Create** for a separate VS Code key. Check **OpenAI chat** access, current model pricing, and your balance first.
 3. If you restrict **Allowed APIs**, allow the model-list and chat-completions APIs used by this extension: `GET /openai/models` and `POST /openai/chat/completions`. Copy the token string without `Bearer ` or quotes.
 
@@ -48,7 +50,7 @@ Paste this prompt into Chat and send it once:
 Reply with exactly: Marketplace extension connected.
 ```
 
-You can also copy the [no-key prompt file](examples/first-chat.prompt.md) into your workspace's `.github/prompts/` folder and run it from Chat. The prompt file contains no credentials. A reply in Chat confirms that VS Code called the selected model; check [Usage](https://platform.acedata.cloud/console/usage) for the corresponding Credits charge. Billing follows your account's current package rate and selected model price.
+You can also copy the [no-key prompt file](examples/first-chat.prompt.md) into your workspace's `.github/prompts/` folder and run it from Chat. The prompt file contains no credentials. A reply in Chat confirms that VS Code called the selected model; check [Usage](https://platform.acedata.cloud/console/usage?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=vscodemodelprovider_readme_usage) for the corresponding Credits charge. Billing follows your account's current package rate and selected model price.
 
 ![Actual completed reply in VS Code Chat](assets/tutorial/04-chat-result.png)
 

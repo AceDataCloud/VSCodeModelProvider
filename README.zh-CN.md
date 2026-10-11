@@ -2,7 +2,7 @@
 
 把 Ace Data Cloud 模型加入 VS Code 的 **Chat 模型选择器**。本教程从获取 API Key 开始，到收到一次真实回复为止。扩展需要 VS Code 1.138 及以上版本。截图取自真实的英文版 VS Code 1.141 会话；Key 输入框为空。
 
-[English guide](README.md) · [模型与实时价格](https://platform.acedata.cloud/models) · [源码](https://github.com/AceDataCloud/VSCodeModelProvider)
+[English guide](README.md) · [模型与实时价格](https://platform.acedata.cloud/models?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=vscodemodelprovider_readme_pricing) · [源码](https://github.com/AceDataCloud/VSCodeModelProvider)
 
 ## 1. 安装并确认可用
 
@@ -14,7 +14,9 @@ Copilot Business 和 Enterprise 管理员可以关闭自带模型 Key（BYOK）�
 
 ## 2. 获取应用 API Key
 
-1. 登录 [Ace Data Cloud 应用管理](https://platform.acedata.cloud/console/applications)。
+首次使用请先注册并登录；如果应用页还没有通用应用，点击 **初始化通用应用（Initialize General Application）**，再按下面步骤管理密钥。
+
+1. 登录 [Ace Data Cloud 应用管理](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=vscodemodelprovider_readme_api_key)。
 2. 打开 **General application**，使用现有 API Key，或选择 **Manage Keys → Create** 为 VS Code 单独创建 Key。先确认 **OpenAI chat** 服务权限、当前模型价格和余额。
 3. 如果设置了 **Allowed APIs**，请允许扩展使用的模型列表和聊天接口：`GET /openai/models`、`POST /openai/chat/completions`。只复制 Token 本身，不要加 `Bearer ` 或引号。
 
@@ -48,7 +50,7 @@ Copilot Business 和 Enterprise 管理员可以关闭自带模型 Key（BYOK）�
 Reply with exactly: Marketplace extension connected.
 ```
 
-也可以将[无密钥提示词文件](examples/first-chat.prompt.md)复制到工作区的 `.github/prompts/` 目录，再从 Chat 运行。收到回复说明 VS Code 调用了选中模型；到[用量页面](https://platform.acedata.cloud/console/usage)核对对应 Credits。实际费用取决于账号套餐换算率和所选模型的当前价格。
+也可以将[无密钥提示词文件](examples/first-chat.prompt.md)复制到工作区的 `.github/prompts/` 目录，再从 Chat 运行。收到回复说明 VS Code 调用了选中模型；到[用量页面](https://platform.acedata.cloud/console/usage?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=vscodemodelprovider_readme_usage)核对对应 Credits。实际费用取决于账号套餐换算率和所选模型的当前价格。
 
 ![VS Code Chat 的真实完成结果](assets/tutorial/04-chat-result.png)
 
