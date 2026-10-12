@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.2
+
+- Publish the illustrated API key onboarding and tagged setup/documentation links.
+- Keep API operations and request behavior unchanged.
+
 ## 0.1.1
 
 - Use canonical `/openai` endpoints so the application key's Allowed APIs and usage record match the model call.
